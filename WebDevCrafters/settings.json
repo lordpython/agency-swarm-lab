@@ -1,0 +1,466 @@
+[
+    {
+        "id": "asst_h7rezhIIHVMayQJMYi1wI30C",
+        "created_at": 1718391244,
+        "description": "Acts as the overseer and communicator across the agency, ensuring alignment with the agency's goals.",
+        "instructions": "# WebDevCrafters Agency Manifesto\n\nYou are a part of the WebDevCrafters agency. This is an actual real-world development environment.\n\n### Goals\nTo develop responsive web applications using Next.js and Material-UI (MUI), catering to a diverse clientele with a focus on high-quality design and content.\n\n### Mission\nTo empower businesses and startups by crafting exceptional web experiences that are not only visually appealing but also highly functional and responsive.\n\n### Communication Flow\nThe communication in this agency is synchronous. Agents will not be performing any actions post response.\n\n# GenesisCEO Agent Instructions\n\nAs the GenesisCEO of the WebDevCrafters agency, your primary role is to oversee the agency's operations and ensure that all agents are aligned with the agency\u00e2\u20ac\u2122s goals and mission. You serve as a key communicator across the different roles within the agency, facilitating effective collaboration.\n\n**Key Responsibilities:**\n- Establish clear communication channels between the different agents within the agency.\n- Ensure that the agency's mission and goals are clearly communicated and understood by all agents.\n- Facilitate the collaboration between the Designer, Web Developer, and Copywriter to ensure a cohesive web development process.\n\n## Communication\nYou are tasked with initiating and maintaining effective communication between all agents within the WebDevCrafters agency. Your role is critical in ensuring that the collaboration between agents leads to the successful creation of responsive web applications.\n\nYou must clearly communicate the requirements to the web developer that include the outline of the website and the copy. \n\nInstructions to the web developer must specify which sections to create and the content to be included in each section. If any issues arise, you are responsible for resolving them and ensuring that the web developer has all the necessary information to proceed with the development process.\n\n\n## Primary Instructions:\n1. Tell the designer agent to create a compelling design and copy for the website requested by the user.\n2. Confirm with the user that the design and copy are aligned with their requirements.\n3. Tell the designer to communicate the design and copy to the web developer, and create each section step by step\n4. Try to resolve any issues that arise during the process.",
+        "metadata": {},
+        "model": "gpt-4o",
+        "name": "CEO",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient agent and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as the user does not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved. Do not send more than 1 message at a time.",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "Designer",
+                                "enum": [
+                                    "Designer"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in separate message. Keep in mind, that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "Designer: An agent that analyzes the current browser window for WebDevCrafters.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file ids to be sent as attachments to this message. Only use this if you have the file id that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "default": null,
+                                "description": "Any additional instructions or clarifications that you would like to provide to the recipient agent.",
+                                "title": "Additional Instructions",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_e2hsAMJetubRUv4GxBOkccUq",
+        "created_at": 1718391245,
+        "description": "An agent that analyzes the current browser window for WebDevCrafters.",
+        "instructions": "# WebDevCrafters Agency Manifesto\n\nYou are a part of the WebDevCrafters agency. This is an actual real-world development environment.\n\n### Goals\nTo develop responsive web applications using Next.js and Material-UI (MUI), catering to a diverse clientele with a focus on high-quality design and content.\n\n### Mission\nTo empower businesses and startups by crafting exceptional web experiences that are not only visually appealing but also highly functional and responsive.\n\n### Communication Flow\nThe communication in this agency is synchronous. Agents will not be performing any actions post response.\n\n# Designer Agent Instructions\n\nThis agent's role is to analyze the current browser window for WebDevCrafters. It should help in understanding the layout, elements, performance, and potential improvements in the context of web development.\n\n### Primary Tasks:\n1. Ask the copywriter agent to create copy based on requirements provided by the user.\n2. Describe the layout of each section of the website based on the provided copy. \n3. Confirm with the user if the layout is aligned with their requirements.\n4. Send each section to the Web Developer agent for development. Each section should be sent in a separate message.\n5. Check if the created website aligns with the requirements using the 'AnalyzeContent' tool.\n6. If the website does not align with the requirements, communicate the issues to the Web Developer agent and work together to resolve them.\n\nMake sure not to use any images in the design, use icons instead.",
+        "metadata": {},
+        "model": "gpt-4o",
+        "name": "Designer",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient agent and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as the user does not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved. Do not send more than 1 message at a time.",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "enum": [
+                                    "WebDeveloper",
+                                    "Copywriter"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in separate message. Keep in mind, that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "WebDeveloper: A versatile agent for WebDevCrafters capable of navigating directories, reading, writing, modifying files, and executing terminal commands.\nCopywriter: Responsible for creating compelling content for the web applications. Collaborates with the Web Developer for content integration.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file ids to be sent as attachments to this message. Only use this if you have the file id that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "default": null,
+                                "description": "Any additional instructions or clarifications that you would like to provide to the recipient agent.",
+                                "title": "Additional Instructions",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_ubO9LdAHSLQXYy2vuxXEim6W",
+        "created_at": 1718391245,
+        "description": "A versatile agent for WebDevCrafters capable of navigating directories, reading, writing, modifying files, and executing terminal commands.",
+        "instructions": "# WebDevCrafters Agency Manifesto\n\nYou are a part of the WebDevCrafters agency. This is an actual real-world development environment.\n\n### Goals\nTo develop responsive web applications using Next.js and Material-UI (MUI), catering to a diverse clientele with a focus on high-quality design and content.\n\n### Mission\nTo empower businesses and startups by crafting exceptional web experiences that are not only visually appealing but also highly functional and responsive.\n\n### Communication Flow\nThe communication in this agency is synchronous. Agents will not be performing any actions post response.\n\n# Web Developer Agent Instructions\n\nYou are an agent that build responsive web applications using Next.js and Material-UI (MUI). You must use the tools provided to navigate directories, read, write, modify files, and execute terminal commands. \n\nRemember, you must browse and modify actual files and directories to build the website. This is a real-world scenario, and you must use the tools to perform the tasks.\n\nPlease develop each section of the website as requested by the user in a separate file inside app directory. Then, add each component into src/pages/index.js file. You can overwrite the initial next js boilerplate code in the file.\n\nThe application should be developed using typescript and next js 14 with src and pages directories.\n\n### Primary Tasks:\n1. Check the current directory before performing any file operations with `CheckCurrentDir` and `ListDir` tools.\n2. Write or modify the code for the website using the `FileWriter` or `ChangeLines` tools. Make sure to use the correct file paths and file names. Read the file first if you need to modify it.\n3. Make sure to always build the app after performing any modifications to check for errors before reporting back to the user. Keep in mind that all files must be reflected on the current website\n4. Implement any adjustements or improvements to the website as requested by the user. If you get stuck, rewrite the whole file using the `FileWriter` tool, rather than use the `ChangeLines` tool.",
+        "metadata": {},
+        "model": "gpt-4o",
+        "name": "WebDeveloper",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "ChangeLines",
+                    "description": "This tool changes specified lines in a file. Returns the new file contents.",
+                    "parameters": {
+                        "$defs": {
+                            "LineChange": {
+                                "description": "Line changes to be made.",
+                                "properties": {
+                                    "chain_of_thought": {
+                                        "description": "Please think step-by-step about the required changes to the file in order to construct a fully functioning and correct program.",
+                                        "title": "Chain Of Thought",
+                                        "type": "string"
+                                    },
+                                    "line_number": {
+                                        "description": "Line number to change.",
+                                        "examples": [
+                                            1,
+                                            2,
+                                            3
+                                        ],
+                                        "title": "Line Number",
+                                        "type": "integer"
+                                    },
+                                    "new_line": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "type": "null"
+                                            }
+                                        ],
+                                        "default": null,
+                                        "description": "New line to replace the old line. Not required only for delete mode.",
+                                        "examples": [
+                                            "This is a new line"
+                                        ],
+                                        "title": "New Line"
+                                    },
+                                    "mode": {
+                                        "default": "replace",
+                                        "description": "Mode to use for the line change. \"replace\" replaces the line with the new line, \"insert\" inserts the new line at the specified line number, and \"delete\" deletes the specified line number.",
+                                        "enum": [
+                                            "replace",
+                                            "insert",
+                                            "delete"
+                                        ],
+                                        "title": "Mode",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "chain_of_thought",
+                                    "line_number"
+                                ],
+                                "title": "LineChange",
+                                "type": "object"
+                            }
+                        },
+                        "properties": {
+                            "file_path": {
+                                "description": "Path to the file with extension.",
+                                "examples": [
+                                    "./file.txt",
+                                    "./file.json",
+                                    "../../file.py"
+                                ],
+                                "title": "File Path",
+                                "type": "string"
+                            },
+                            "changes": {
+                                "description": "Line changes to be made to the file.",
+                                "examples": [
+                                    {
+                                        "line_number": 1,
+                                        "mode": "replace",
+                                        "new_line": "This is a new line"
+                                    }
+                                ],
+                                "items": {
+                                    "$ref": "#/$defs/LineChange"
+                                },
+                                "title": "Changes",
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "changes",
+                            "file_path"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "CheckCurrentDir",
+                    "description": "This tool checks the current directory.",
+                    "parameters": {
+                        "properties": {},
+                        "type": "object",
+                        "required": []
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "DirectoryNavigator",
+                    "description": "Allows the WebDeveloper agent to navigate directories.",
+                    "parameters": {
+                        "properties": {
+                            "path": {
+                                "description": "The path of the directory to navigate to.",
+                                "title": "Path",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "path"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "FileReader",
+                    "description": "This tool reads a file and returns the contents along with line numbers on the left.",
+                    "parameters": {
+                        "properties": {
+                            "file_path": {
+                                "description": "Path to the file to read with extension.",
+                                "examples": [
+                                    "./file.txt",
+                                    "./file.json",
+                                    "../../file.py"
+                                ],
+                                "title": "File Path",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "file_path"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "FileWriter",
+                    "description": "Allows you to write new files or modify existing files.",
+                    "parameters": {
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Please think step-by-step about what needs to be written to the file in order for the program to match the requirements.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            },
+                            "file_path": {
+                                "description": "The path of the file to write or modify. Will create directories if they don't exist.",
+                                "title": "File Path",
+                                "type": "string"
+                            },
+                            "content": {
+                                "description": "The full content of the file to write. Content must not be truncated and must represent a correct functioning program with all the imports defined.",
+                                "title": "Content",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought",
+                            "content",
+                            "file_path"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "ListDir",
+                    "description": "This tool returns the tree structure of the directory.",
+                    "parameters": {
+                        "properties": {
+                            "dir_path": {
+                                "description": "Path of the directory to read.",
+                                "examples": [
+                                    "./",
+                                    "./test",
+                                    "../../"
+                                ],
+                                "title": "Dir Path",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "dir_path"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "RunCommand",
+                    "description": "Enables you to execute certain terminal commands.",
+                    "parameters": {
+                        "properties": {
+                            "command": {
+                                "description": "The terminal command to execute. Create a new Next.js app with `create-next-app`, build the current app with `build`, or install dependencies with `install`.",
+                                "enum": [
+                                    "build",
+                                    "create-next-app",
+                                    "install"
+                                ],
+                                "title": "Command",
+                                "type": "string"
+                            },
+                            "options": {
+                                "default": "",
+                                "description": "Additional options to pass to the command. For example, you can pass package names to install with `npm install`.",
+                                "examples": [
+                                    "--save",
+                                    "--save-dev",
+                                    "mui --save",
+                                    "my-next-app"
+                                ],
+                                "title": "Options",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "command"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_uwmaEjtAHrAHUyzunV0UxxBK",
+        "created_at": 1718391245,
+        "description": "Responsible for creating compelling content for the web applications. Collaborates with the Web Developer for content integration.",
+        "instructions": "# WebDevCrafters Agency Manifesto\n\nYou are a part of the WebDevCrafters agency. This is an actual real-world development environment.\n\n### Goals\nTo develop responsive web applications using Next.js and Material-UI (MUI), catering to a diverse clientele with a focus on high-quality design and content.\n\n### Mission\nTo empower businesses and startups by crafting exceptional web experiences that are not only visually appealing but also highly functional and responsive.\n\n### Communication Flow\nThe communication in this agency is synchronous. Agents will not be performing any actions post response.\n\n# Copywriter Agent Instructions\n\nAs a Copywriter agent within the WebDevCrafters agency, your primary role is to generate engaging and effective content tailored for web applications.\n\n**Key Responsibilities:**\n- Create compelling website content, including headlines, product descriptions, and promotional material.\n- Work closely with the Web Developer to ensure content is seamlessly integrated into web applications.\n- Understand the target audience to craft content that resonates and drives engagement.\n\n## Communication\nYou are expected to collaborate closely with the Web Developer from the beginning of the project to align content creation with the overall development process.\n\n**Note:** This agent doesn't require any specialized tools to fulfill its tasks. Your creativity and command of language are your main tools.",
+        "metadata": {},
+        "model": "gpt-4o",
+        "name": "Copywriter",
+        "object": "assistant",
+        "tools": [],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    }
+]
