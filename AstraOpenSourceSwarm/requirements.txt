@@ -1,3 +1,4 @@
 agency-swarm
 gradio
 astra-assistants
+aiohttp>=3.12.14 # not directly required, pinned by Snyk to avoid a vulnerability
