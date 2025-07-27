@@ -1,5 +1,5 @@
 # Use the official Python image from the Docker Hub
-FROM python:3.12-slim  
+FROM python:3.14.0rc1-slim  
 
 # Set environment variable to allow print statements to be displayed immediately
 ENV PYTHONUNBUFFERED=1 
