@@ -4,3 +4,4 @@ fastapi<1
 uvicorn<1
 slack_bolt
 firebase_functions~=0.1.0  
+urllib3>=2.6.0 # not directly required, pinned by Snyk to avoid a vulnerability
