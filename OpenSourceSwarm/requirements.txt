@@ -1,3 +1,5 @@
 agency-swarm==0.1.7
 gradio
 litellm[proxy]
+aiohttp>=3.13.3 # not directly required, pinned by Snyk to avoid a vulnerability
+litellm>=1.80.11 # not directly required, pinned by Snyk to avoid a vulnerability
